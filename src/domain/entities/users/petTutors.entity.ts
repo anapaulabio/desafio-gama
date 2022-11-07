@@ -1,6 +1,6 @@
 import { IPetsEntity } from "./pets.entity";
 
 export interface IPetTutorsEntity {
-    userId: number,
+    petName: string,
     pet: IPetsEntity
 }

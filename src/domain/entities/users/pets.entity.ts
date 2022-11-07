@@ -1,6 +1,5 @@
 export interface IPetsEntity {
-    petTutorsId: number,
-    name: string,
+    petName: string,
     species: string,
     description: string
 }
