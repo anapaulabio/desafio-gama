@@ -1,4 +1,4 @@
-export interface IClients {
-    userId: number,
-    pet: string
-}
+import { IVetsEntity } from "./vets.entity";
+import { IPetTutorsEntity } from "./petTutors.entity";
+
+export type ClientEntity = IVetsEntity | IPetTutorsEntity
