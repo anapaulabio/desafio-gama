@@ -1,6 +1,6 @@
-import { IPetsEntity } from "./pets.entity";
+import { IUsersEntity } from "./users.entity";
 
-export interface IPetTutorsEntity {
-    petName: string,
-    pet: IPetsEntity
+export interface IPetTutorsEntity extends IUsersEntity {
+    cpf: string,
+    phone: string,
 }

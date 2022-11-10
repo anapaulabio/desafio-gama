@@ -1,11 +1,10 @@
-import { IAdressesEntity } from "./adresses.entity";
+import { IAddressesEntity } from "./addresses.entity";
 
 export interface IUsersEntity {
     userId?: number,
     name?: string,
-    address?: IAdressesEntity,
-    cep?: string,
+    address?: IAddressesEntity,
+    code?: string,
     email: string,
     password: string,
-    birthDate?: Date
 }
