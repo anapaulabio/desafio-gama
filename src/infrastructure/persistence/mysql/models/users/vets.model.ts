@@ -6,13 +6,13 @@ export default MysqlDatabase.getInstance().createModel('vets', {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
     },
-    userId: {
-        type: Sequelize.DataTypes.INTEGER,
-    },
+    userId: Sequelize.DataTypes.INTEGER,
     specialty: Sequelize.DataTypes.STRING,
     crmv: Sequelize.DataTypes.STRING,
     queryValue: Sequelize.DataTypes.INTEGER,
     formation: Sequelize.DataTypes.STRING,
     experience: Sequelize.DataTypes.STRING,
-    teleconsultation: Sequelize.DataTypes.BOOLEAN
+    teleconsultation: Sequelize.DataTypes.BOOLEAN,
+    createdAt: Sequelize.DataTypes.DATE,
+    updatedAt:  Sequelize.DataTypes.DATE
 });
