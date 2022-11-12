@@ -31,7 +31,7 @@ export class ClientsRepository implements IClientsRepository {
 
         async create(resource: ClientsEntity): Promise<ClientsEntity> {
             const { users, vets, addresses } = entityToModel(resource)
-            const userModel = await this._database.create(this._database, users)
+            const userModel = await this._database.create(this._usersModel, users)
 
             if (vets){
                 vets.userId = userModel.null
@@ -110,7 +110,7 @@ export class ClientsRepository implements IClientsRepository {
             const usersByCity = await this._database.selectQuery(
                 `
                 SELECT * from vets v 
-                LEFT JOIN users u ON u.user_id =  v.userId
+                LEFT JOIN users u ON u.userId =  v.userId
                 LEFT JOIN addresses ad ON ad.userId = v.userId
                 where city = :city
                 `,
