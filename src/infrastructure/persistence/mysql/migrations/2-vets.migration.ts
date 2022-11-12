@@ -8,12 +8,6 @@ export default {
                 primaryKey: true,
                 autoIncrement: true
             },
-            specialty: Sequelize.DataTypes.STRING,
-            crmv: Sequelize.DataTypes.STRING,
-            queryValue: Sequelize.DataTypes.INTEGER,
-            formation: Sequelize.DataTypes.STRING,
-            experience: Sequelize.DataTypes.STRING,
-            teleconsultation: Sequelize.DataTypes.BOOLEAN,
             userId: {
                 type: Sequelize.DataTypes.INTEGER,
                 references: {
@@ -23,6 +17,14 @@ export default {
                     key: 'userId'
                 }
             },
+            specialty: Sequelize.DataTypes.STRING,
+            crmv: Sequelize.DataTypes.STRING,
+            queryValue: Sequelize.DataTypes.INTEGER,
+            formation: Sequelize.DataTypes.STRING,
+            experience: Sequelize.DataTypes.STRING,
+            teleconsultation: Sequelize.DataTypes.BOOLEAN,
+            createdAt: Sequelize.DataTypes.DATE,
+            updatedAt:  Sequelize.DataTypes.DATE
         })
     },
     down:(queryInterface: Sequelize.QueryInterface) => {

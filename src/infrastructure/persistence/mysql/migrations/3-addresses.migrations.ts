@@ -22,7 +22,9 @@ export default {
                     },
                     key: 'userId'
                 },
-            } 
+            },
+            createdAt: Sequelize.DataTypes.DATE,
+            updatedAt:  Sequelize.DataTypes.DATE 
         })
     },
     down: (queryInterface: Sequelize.QueryInterface)=> {

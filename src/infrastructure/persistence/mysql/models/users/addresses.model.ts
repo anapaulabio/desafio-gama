@@ -5,7 +5,6 @@ export default MysqlDatabase.getInstance().createModel('addresses', {
     addressId: {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
-        field: 'address_id',
     },
     code: Sequelize.DataTypes.STRING,
     address: Sequelize.DataTypes.STRING,
@@ -13,4 +12,6 @@ export default MysqlDatabase.getInstance().createModel('addresses', {
     district: Sequelize.DataTypes.STRING,
     city: Sequelize.DataTypes.STRING,
     state: Sequelize.DataTypes.STRING,
+    createdAt: Sequelize.DataTypes.DATE,
+    updatedAt:  Sequelize.DataTypes.DATE
 });
