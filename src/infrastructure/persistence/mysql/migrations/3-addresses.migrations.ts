@@ -7,7 +7,6 @@ export default {
                 type: Sequelize.DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
-                field: 'address_id'
             },
             code: Sequelize.DataTypes.STRING,
             address: Sequelize.DataTypes.STRING,
@@ -21,7 +20,7 @@ export default {
                     model: {
                         tableName: 'users'
                     },
-                    key: 'user_id'
+                    key: 'userId'
                 },
             } 
         })

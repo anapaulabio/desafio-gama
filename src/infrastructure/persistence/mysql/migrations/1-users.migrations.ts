@@ -6,8 +6,7 @@ export default {
             userId: {
                 type: Sequelize.DataTypes.INTEGER,
                 primaryKey: true,
-                autoIncrement: true,
-                field: 'user_id'
+                autoIncrement: true
             },
             name: Sequelize.DataTypes.STRING,
             code: Sequelize.DataTypes.STRING,
@@ -16,6 +15,8 @@ export default {
                 unique: true,
             },
             password: Sequelize.DataTypes.STRING,
+            phoneNumber: Sequelize.DataTypes.INTEGER,
+            whatsappLink: Sequelize.DataTypes.STRING
         })
     },
     down:(queryInterface: Sequelize.QueryInterface) => {

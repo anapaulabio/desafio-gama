@@ -1,10 +1,10 @@
 import { IUsersEntity } from "./users.entity";
 
 export interface IVetsEntity extends IUsersEntity {
-    specialty: string,
-    CRMV: string,
-    queryValue: number,
-    whatsappLink: string,
-    experience: string,
-    teleconsultation: boolean
+    specialty?: string,
+    crmv?: string,
+    queryValue?: number,
+    formation?: string,
+    experience?: string,
+    teleconsultation?: boolean
 }
