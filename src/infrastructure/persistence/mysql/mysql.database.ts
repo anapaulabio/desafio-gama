@@ -79,7 +79,7 @@ export class MysqlDatabase implements IDatabaseModel {
             name,
             properties,
             {
-                timestamps: true
+                timestamps: false
             }
         )
     }

@@ -33,7 +33,8 @@ class ClientsController {
 
             res.status(201).send(clients)
         } catch (error) {
-            
+            console.error(error)
+            res.status(500).send(error)
         }
     }
     async updateClients(req: express.Request, res: express.Response){
@@ -58,7 +59,7 @@ class ClientsController {
     }
     async groupClientsByCity(req: express.Request, res: express.Response){
         try {
-            const clients = await groupByCityUsecase.execute(req.body)
+            const clients = await groupByCityUsecase.execute(req.params.city)
 
             res.status(200).send(clients)
         } catch (error) {
