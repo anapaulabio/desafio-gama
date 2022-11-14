@@ -9,6 +9,8 @@ import entityToModel from "../../infrastructure/persistence/mysql/helpers/entity
 import modelToEntity from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
 import { MysqlDatabase } from "../../infrastructure/persistence/mysql/mysql.database";
 import { IDatabaseModel } from "../../infrastructure/persistence/databasemodel.interface";
+import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
+//import bcrypt from 'bcrypt'
 
 
 export class ClientsRepository implements IClientsRepository {
@@ -103,8 +105,36 @@ export class ClientsRepository implements IClientsRepository {
         }
 
         async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
-            return this._database.readByWhere(this._vetsModel, {email: email, password: password})
+            try{
+                const users = await this._database.readByWhere(this._usersModel, {
+                    email: email,
+                    password: password
+                });
+                
+                return modelToEntityHelper(users);
+            } catch(err){
+                throw new Error((err as Error).message);
+            }
         }
+        // async listLogin(email: string, password: string): Promise<ClientsEntity | undefined> {
+        //     try {
+        //         const foundClient: ClientsEntity = await this._database.listOneByWhere(this._usersModel, {
+        //             email: email
+        //         });
+        //         /*if (foundClient) {
+        //             if (bcrypt.compareSync(password, foundClient.password)) {
+        //                 return modelToEntityHelper(foundClient);
+        //             } else {
+        //                 return
+        //             }
+        //         } else {
+        //             return
+        //         }*/
+        //         return
+        //     } catch (error) {
+        //         throw new Error((error as Error).message);
+        //     }
+        // }
 
         async groupClientsByCep(cep: string): Promise<ClientsEntity> {
             const usersByCity = await this._database.selectQuery(

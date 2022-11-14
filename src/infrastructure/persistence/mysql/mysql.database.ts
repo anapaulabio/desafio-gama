@@ -74,12 +74,13 @@ export class MysqlDatabase implements IDatabaseModel {
         }
     }
 
+
     createModel(name: string, properties: Sequelize.ModelAttributes): Sequelize.ModelCtor<Sequelize.Model<any, any>> {
         return this._adapter.define(
             name,
             properties,
             {
-                timestamps: true
+                timestamps: false
             }
         )
     }

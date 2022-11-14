@@ -3,5 +3,5 @@ export interface IDatabase {
     create(type: any, data: any): any,
     read(type: any, dataId: any): any,
     update(type: any, data: any): any,
-    delete(type: any, dataId: any): any
+    delete(type: any, dataId: any): any,
 }
