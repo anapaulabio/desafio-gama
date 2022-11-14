@@ -7,7 +7,7 @@ import deleteUsecase from "../../../domain/usecases/users/delete.usecase";
 import updateUsecase from "../../../domain/usecases/users/update.usecase";
 import listUsecase from "../../../domain/usecases/users/list.usecase";
 import readUsecase from "../../../domain/usecases/users/read.usecase";
-import groupByCityUsecase from "../../../domain/usecases/users/groupByCity.usecase";
+import groupByCepUsecase from "../../../domain/usecases/users/groupByCep.usecase";
 
 class ClientsController {
     async listClients(req: express.Request, res: express.Response){
@@ -55,9 +55,9 @@ class ClientsController {
             return res.status(500).send(getErrorMessage(error));            
         }
     }
-    async groupClientsByCity(req: express.Request, res: express.Response){
+    async groupClientsByCep(req: express.Request, res: express.Response){
         try {
-            const clients = await groupByCityUsecase.execute(req.params.city)
+            const clients = await groupByCepUsecase.execute(req.params.cep)
             res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error));            

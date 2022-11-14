@@ -2,7 +2,7 @@ import { IUsersRepository } from "../../domain/repository/user.repository";
 import * as Sequelize from 'sequelize'
 import { IUsersEntity } from "../../domain/entities/users/users.entity";
 import { IDatabaseModel } from "../../infrastructure/persistence/databasemodel.interface";
-import cryptoPassUser from "../helpers/crypto.pass.user";
+import cryptoPassUser from "../apis/helpers/crypto.pass.user";
 
 export class UserRepository implements IUsersRepository {
     constructor(

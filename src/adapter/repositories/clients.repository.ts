@@ -103,19 +103,19 @@ export class ClientsRepository implements IClientsRepository {
         }
 
         async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
-            return 
+            return this._database.readByWhere(this._vetsModel, {email: email, password: password})
         }
 
-        async groupClientsByCity(city: string): Promise<ClientsEntity> {
+        async groupClientsByCep(cep: string): Promise<ClientsEntity> {
             const usersByCity = await this._database.selectQuery(
                 `
                 SELECT * from vets v 
                 LEFT JOIN users u ON u.userId =  v.userId
                 LEFT JOIN addresses ad ON ad.userId = v.userId
-                where city = :city
+                where cep = :cep
                 `,
                 {
-                    city
+                    cep
                 }
             )
 
