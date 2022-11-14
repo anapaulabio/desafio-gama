@@ -57,7 +57,7 @@ class ClientsController {
     }
     async groupClientsByCity(req: express.Request, res: express.Response){
         try {
-            const clients = await groupByCityUsecase.execute(req.params.city)
+            const clients = await groupByCityUsecase.execute(req.params.cep)
             res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error));            

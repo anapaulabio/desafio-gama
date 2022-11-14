@@ -12,6 +12,8 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets`)
         .get(clientsController.listClients)
         .post(clientsController.createClients)
+
+        this.app.route(`/vets/cep/:cep`)
         .get(clientsController.groupClientsByCity)
         
         
