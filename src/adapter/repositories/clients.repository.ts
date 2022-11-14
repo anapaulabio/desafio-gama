@@ -51,7 +51,7 @@ export class ClientsRepository implements IClientsRepository {
             const users = await this._database.list(this._usersModel, {
                 include: [
                     'vets',
-                    'addresses'
+                    'addresses',
                 ]
             })
 
@@ -98,7 +98,7 @@ export class ClientsRepository implements IClientsRepository {
 
         async deleteById(resourceId: number): Promise<void> {
             await this._database.delete(this._vetsModel, {userId: resourceId})
-            await this._database.delete(this._addressesModel, {useId: resourceId})
+            await this._database.delete(this._addressesModel, {userId: resourceId})
             await this._database.delete(this._usersModel, {userId: resourceId})
         }
 
@@ -106,20 +106,36 @@ export class ClientsRepository implements IClientsRepository {
             return this._database.readByWhere(this._vetsModel, {email: email, password: password})
         }
 
-        async groupClientsByCep(cep: string): Promise<ClientsEntity> {
-            const usersByCity = await this._database.selectQuery(
+        async groupClientsByCode(code: string): Promise<ClientsEntity> {
+            const vetsByCode = await this._database.selectQuery(
                 `
-                SELECT * from vets v 
-                LEFT JOIN users u ON u.userId =  v.userId
-                LEFT JOIN addresses ad ON ad.userId = v.userId
-                where cep = :cep
+                SELECT * from vets v
+                LEFT JOIN users u ON u.userId = v.userId
+
+                where code = :code
                 `,
                 {
-                    cep
+                    code
                 }
             )
+            
+            return vetsByCode
+            
+        }
 
-            return usersByCity
+        async groupClientsByTeleconsultation(teleconsultation: string): Promise<any> {
+            const vetsByTeleconsultation = await this._database.selectQuery(
+                `
+				SELECT * from users u
+                LEFT JOIN vets v ON v.userId = u.userId
+                where teleconsultation = :teleconsultation
+                `,
+                {
+                    teleconsultation
+                }
+            )
+            
+            return vetsByTeleconsultation
         }
 }
 
