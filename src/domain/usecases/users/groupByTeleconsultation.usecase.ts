@@ -2,15 +2,15 @@ import { IUseCase } from "../usecase.interface";
 import { IClientsRepository } from "../../repositories/clients.repository.interface";
 import  ClientsRepository from "../../../adapter/repositories/clients.repository";
 
-export class GroupClientsByCity implements IUseCase {
+export class groupClientsByTeleconsultation implements IUseCase {
     constructor( private _repository: IClientsRepository){}
 
-    async execute(city: string) {
-        await this._repository.groupClientsByCity(city)
+    async execute(teleconsultation: string) {
+        return await this._repository.groupClientsByTeleconsultation(teleconsultation)
     }
 
 }
 
-export default new GroupClientsByCity(
+export default new groupClientsByTeleconsultation(
     ClientsRepository
 )

@@ -16,7 +16,9 @@ export default {
             },
             password: Sequelize.DataTypes.STRING,
             phoneNumber: Sequelize.DataTypes.INTEGER,
-            whatsappLink: Sequelize.DataTypes.STRING
+            whatsappLink: Sequelize.DataTypes.STRING,
+            createdAt: Sequelize.DataTypes.DATE,
+            updatedAt:  Sequelize.DataTypes.DATE
         })
     },
     down:(queryInterface: Sequelize.QueryInterface) => {

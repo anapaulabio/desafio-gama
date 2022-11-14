@@ -31,7 +31,7 @@ export class ClientsRepository implements IClientsRepository {
 
         async create(resource: ClientsEntity): Promise<ClientsEntity> {
             const { users, vets, addresses } = entityToModel(resource)
-            const userModel = await this._database.create(this._database, users)
+            const userModel = await this._database.create(this._usersModel, users)
 
             if (vets){
                 vets.userId = userModel.null
@@ -51,7 +51,7 @@ export class ClientsRepository implements IClientsRepository {
             const users = await this._database.list(this._usersModel, {
                 include: [
                     'vets',
-                    'addresses'
+                    'addresses',
                 ]
             })
 
@@ -98,28 +98,44 @@ export class ClientsRepository implements IClientsRepository {
 
         async deleteById(resourceId: number): Promise<void> {
             await this._database.delete(this._vetsModel, {userId: resourceId})
-            await this._database.delete(this._addressesModel, {useId: resourceId})
+            await this._database.delete(this._addressesModel, {userId: resourceId})
             await this._database.delete(this._usersModel, {userId: resourceId})
         }
 
         async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
-            return 
+            return this._database.readByWhere(this._vetsModel, {email: email, password: password})
         }
 
-        async groupClientsByCity(city: string): Promise<ClientsEntity> {
-            const usersByCity = await this._database.selectQuery(
+        async groupClientsByCode(code: string): Promise<ClientsEntity> {
+            const vetsByCode = await this._database.selectQuery(
                 `
-                SELECT * from vets v 
-                LEFT JOIN users u ON u.user_id =  v.userId
-                LEFT JOIN addresses ad ON ad.userId = v.userId
-                where city = :city
+                SELECT * from vets v
+                LEFT JOIN users u ON u.userId = v.userId
+
+                where code = :code
                 `,
                 {
-                    city
+                    code
                 }
             )
+            
+            return vetsByCode
+            
+        }
 
-            return usersByCity
+        async groupClientsByTeleconsultation(teleconsultation: string): Promise<any> {
+            const vetsByTeleconsultation = await this._database.selectQuery(
+                `
+				SELECT * from users u
+                LEFT JOIN vets v ON v.userId = u.userId
+                where teleconsultation = :teleconsultation
+                `,
+                {
+                    teleconsultation
+                }
+            )
+            
+            return vetsByTeleconsultation
         }
 }
 
