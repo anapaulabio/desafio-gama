@@ -18,11 +18,12 @@ export class ClientsRoutes extends CommonRoutesConfig{
         .delete(clientsController.deleteClients)
         .put(clientsController.updateClients)
 
-        this.app.route(`/vets/cep/:cep`)
-        .get(clientsController.groupClientsByCep)
-        
-        
+        this.app.route(`/vets/cep/:code`)
+        .get(clientsController.groupClientsByCode)
 
+        this.app.route(`/vets/teleconsultation/:teleconsultation`)
+        .get(clientsController.groupClientsByTeleconsultation)
+        
         return this.app
     }
 }
