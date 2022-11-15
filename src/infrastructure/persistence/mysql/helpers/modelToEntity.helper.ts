@@ -34,9 +34,7 @@ export default function (people: any): ClientsEntity | undefined {
         (users as IVetsEntity).formation = people.vets.formation;
         (users as IVetsEntity).experience = people.vets.experience;
         (users as IVetsEntity).teleconsultation = people.vets.teleconsultation;
-    } else {
-        return;
-    }
+    } 
 
     return (users as ClientsEntity);
 }
