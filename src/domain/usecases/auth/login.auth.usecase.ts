@@ -1,18 +1,23 @@
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import { IUseCase } from "../usecase.interface";
 import { IClientsRepository } from "../../repositories/clients.repository.interface";
-import jwt from 'jsonwebtoken';
 import ClientsRepository from "../../../adapter/repositories/clients.repository";
-import { IUsersEntity } from "../../entities/users/users.entity";
-import { ClientsEntity } from "../../entities/users/client.entity";
+
 
 export class LoginAuthUseCase implements IUseCase {
-    constructor(private _repository: IClientsRepository){}
+    constructor(private _repository: IClientsRepository) { }
 
-    async execute(data: { email: string, password: string}) {
+    async execute(data: { email: string, password: string }) {
         const user = await this._repository.readByWhere(data.email, data.password)
 
+        if (!user) {
+            throw new Error("Email não encontrado!")
+        }
 
-        if(user){
+        const isMatch = bcrypt.compareSync(data.password, user!.password)
+
+        if (isMatch) {
             const token = jwt.sign(user, String(process.env.SECRET_KEY), {
                 expiresIn: '2 days'
             })
@@ -21,12 +26,13 @@ export class LoginAuthUseCase implements IUseCase {
                 user: user,
                 token: token
             }
+        } else {
+            throw new Error("Senha incorreta!")
         }
-
-        return;
+        
     }
 }
 
 export default new LoginAuthUseCase(
-    ClientsRepository 
+    ClientsRepository
 );
