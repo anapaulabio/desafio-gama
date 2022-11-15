@@ -11,7 +11,7 @@ export default function (people: any): ClientsEntity | undefined {
         name: people.name,
         code: people.code,
         email: people.email,
-        password: people.email,
+        password: people.password,
         phoneNumber: people.phoneNumber,
         whatsappLink: people.whatsappLink
     }

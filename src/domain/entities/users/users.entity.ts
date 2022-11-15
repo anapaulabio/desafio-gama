@@ -2,11 +2,11 @@ import { IAddressesEntity } from "./addresses.entity";
 
 export interface IUsersEntity {
     userId?: number,
-    name?: string,
+    name: string,
     address?: IAddressesEntity,
-    code?: string,
+    code: string,
     email: string,
     password: string,
-    phoneNumber?: number,
-    whatsappLink?: string
+    phoneNumber: string,
+    whatsappLink: string
 }
