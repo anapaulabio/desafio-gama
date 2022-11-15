@@ -77,24 +77,24 @@ export class ClientsRepository implements IClientsRepository {
         }
 
         async updateById(resource: ClientsEntity): Promise<ClientsEntity | undefined> {
-            const userModel = await this._database.read(this._usersModel, resource.userId!, {
+            let userModel = await this._database.read(this._usersModel, resource.userId!, {
                 include: [
                     'vets',
                     'addresses'
                 ]
             })
-
-            const { users, vets, addresses } = entityToModel(resource)
+            console.log("userModel-Retpository", userModel)
+            let { users, vets, addresses } = entityToModel(resource)
             await this._database.update(userModel, users)
 
             if (vets){
-                await this._database.update(userModel.getVet(), vets)
+                await this._database.update(await userModel.getVets(), vets)
             }
 
             if(addresses){
-                await this._database.update(userModel.getAddresses(), addresses)
+                await this._database.update(await userModel.getAddresses(), addresses)
             }
-
+            
             return resource
         }
 
@@ -104,11 +104,10 @@ export class ClientsRepository implements IClientsRepository {
             await this._database.delete(this._usersModel, {userId: resourceId})
         }
 
-        async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
+        async readByWhere(email: string): Promise<ClientsEntity | undefined> {
             try{
                 const users = await this._database.readByWhere(this._usersModel, {
-                    email: email,
-                    password: password,
+                    email: email
                 })
                 console.log("users-repository", users)
                 return modelToEntity(users)
