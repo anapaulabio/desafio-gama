@@ -9,7 +9,7 @@ import entityToModel from "../../infrastructure/persistence/mysql/helpers/entity
 import modelToEntity from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
 import { MysqlDatabase } from "../../infrastructure/persistence/mysql/mysql.database";
 import { IDatabaseModel } from "../../infrastructure/persistence/databasemodel.interface";
-import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
+
 
 
 export class ClientsRepository implements IClientsRepository {
@@ -41,10 +41,11 @@ export class ClientsRepository implements IClientsRepository {
 
             if (addresses){
                 addresses.userId = userModel.null
-                const addressesModel = await this._database.create(this._vetsModel, addresses)
+                const addressesModel = await this._database.create(this._addressesModel, addresses)
             }
 
-            resource.userId = userModel.null
+            resource.userId = userModel.nulls
+
             return resource
         }
 
@@ -107,10 +108,10 @@ export class ClientsRepository implements IClientsRepository {
             try{
                 const users = await this._database.readByWhere(this._usersModel, {
                     email: email,
-                    password: password
-                });
-                
-                return modelToEntityHelper(users);
+                    password: password,
+                })
+                console.log("users-repository", users)
+                return modelToEntity(users)
             } catch(err){
                 throw new Error((err as Error).message);
             }

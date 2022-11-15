@@ -15,7 +15,8 @@ export default {
                         tableName: 'users'
                     },
                     key: 'userId'
-                }
+                },
+                unique: true
             },
             specialty: Sequelize.DataTypes.STRING,
             crmv: Sequelize.DataTypes.STRING,
