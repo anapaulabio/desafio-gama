@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import { IUseCase } from "../usecase.interface";
 import { IClientsRepository } from "../../repositories/clients.repository.interface";
 import ClientsRepository from "../../../adapter/repositories/clients.repository";
+import secret from "../../../infrastructure/config/secret.config";
+import constantsConfig from "../../../infrastructure/config/constants.config";
+import logger from "../../../infrastructure/logs/winston.logs";
 
 
 export class LoginAuthUseCase implements IUseCase {
@@ -12,13 +15,14 @@ export class LoginAuthUseCase implements IUseCase {
         const user = await this._repository.readByWhere(data.email, data.password)
 
         if (!user) {
-            throw new Error("Email não encontrado!")
+            logger.error("email invalido")
+            throw new Error(constantsConfig.AUTH.MESSAGES.ERROR.INVALID_EMAIL)
         }
 
         const isMatch = bcrypt.compareSync(data.password, user!.password)
 
         if (isMatch) {
-            const token = jwt.sign(user, String(process.env.SECRET_KEY), {
+            const token = jwt.sign(user, secret, {
                 expiresIn: '2 days'
             })
 
@@ -27,7 +31,8 @@ export class LoginAuthUseCase implements IUseCase {
                 token: token
             }
         } else {
-            throw new Error("Senha incorreta!")
+            logger.error("Senha inválida")
+            throw new Error(constantsConfig.AUTH.MESSAGES.ERROR.INVALID_PASS)
         }
         
     }

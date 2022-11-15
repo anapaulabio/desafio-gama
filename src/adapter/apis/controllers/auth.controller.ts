@@ -2,6 +2,7 @@ import express from 'express';
 import debug from 'debug';
 import loginAuthUseCase  from '../../../domain/usecases/auth/login.auth.usecase';
 import { getErrorMessage } from '../helpers/errors.helper.adapter';
+import constantsConfig from '../../../infrastructure/config/constants.config';
 
 const log: debug.IDebugger = debug('app:auth-controller');
 
@@ -12,7 +13,7 @@ class AuthController {
             console.log("users-controller", users)
             if(!users){
                 return res.status(401).send({
-                    error: "dados incorretos"
+                    error: constantsConfig.AUTH.MESSAGES.ERROR.INVALID_DATA
                 })
             }
             res.status(200).send({data: users});

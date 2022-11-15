@@ -1,6 +1,7 @@
 import { CommonRoutesConfig } from "./common.routes";
 import express from "express";
 import authController from "../controllers/auth.controller";
+import authMiddleware from "../middlewares/auth.middleware";
 
 
 export class AuthRoutes extends CommonRoutesConfig {
@@ -11,9 +12,11 @@ export class AuthRoutes extends CommonRoutesConfig {
     configureRoutes(): express.Application {
         this.app.route(`/login`)
             .post(
+                authMiddleware.validateLogin,
                 authController.login
             );
 
+        this.app.use(authMiddleware.validateError)
         return this.app;
     }
 }
