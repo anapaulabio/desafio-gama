@@ -13,6 +13,7 @@ import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/
 //import bcrypt from 'bcrypt'
 
 
+
 export class ClientsRepository implements IClientsRepository {
     constructor (
         private _database: IDatabaseModel,
@@ -42,10 +43,11 @@ export class ClientsRepository implements IClientsRepository {
 
             if (addresses){
                 addresses.userId = userModel.null
-                const addressesModel = await this._database.create(this._vetsModel, addresses)
+                const addressesModel = await this._database.create(this._addressesModel, addresses)
             }
 
-            resource.userId = userModel.null
+            resource.userId = userModel.nulls
+
             return resource
         }
 
@@ -53,7 +55,7 @@ export class ClientsRepository implements IClientsRepository {
             const users = await this._database.list(this._usersModel, {
                 include: [
                     'vets',
-                    'addresses'
+                    'addresses',
                 ]
             })
 
@@ -77,32 +79,33 @@ export class ClientsRepository implements IClientsRepository {
         }
 
         async updateById(resource: ClientsEntity): Promise<ClientsEntity | undefined> {
-            const userModel = await this._database.read(this._usersModel, resource.userId!, {
+            let userModel = await this._database.read(this._usersModel, resource.userId!, {
                 include: [
                     'vets',
                     'addresses'
                 ]
             })
-
-            const { users, vets, addresses } = entityToModel(resource)
+            console.log("userModel-Retpository", userModel)
+            let { users, vets, addresses } = entityToModel(resource)
             await this._database.update(userModel, users)
 
             if (vets){
-                await this._database.update(userModel.getVet(), vets)
+                await this._database.update(await userModel.getVets(), vets)
             }
 
             if(addresses){
-                await this._database.update(userModel.getAddresses(), addresses)
+                await this._database.update(await userModel.getAddresses(), addresses)
             }
-
+            
             return resource
         }
 
         async deleteById(resourceId: number): Promise<void> {
             await this._database.delete(this._vetsModel, {userId: resourceId})
-            await this._database.delete(this._addressesModel, {useId: resourceId})
+            await this._database.delete(this._addressesModel, {userId: resourceId})
             await this._database.delete(this._usersModel, {userId: resourceId})
         }
+
 
         async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
             try{
@@ -112,6 +115,7 @@ export class ClientsRepository implements IClientsRepository {
                 });
                 
                 return modelToEntityHelper(users);
+
             } catch(err){
                 throw new Error((err as Error).message);
             }
@@ -136,20 +140,36 @@ export class ClientsRepository implements IClientsRepository {
         //     }
         // }
 
-        async groupClientsByCep(cep: string): Promise<ClientsEntity> {
-            const usersByCity = await this._database.selectQuery(
+        async groupClientsByCode(code: string): Promise<ClientsEntity> {
+            const vetsByCode = await this._database.selectQuery(
                 `
-                SELECT * from vets v 
-                LEFT JOIN users u ON u.userId =  v.userId
-                LEFT JOIN addresses ad ON ad.userId = v.userId
-                where cep = :cep
+                SELECT * from vets v
+                LEFT JOIN users u ON u.userId = v.userId
+
+                where code = :code
                 `,
                 {
-                    cep
+                    code
                 }
             )
+            
+            return vetsByCode
+            
+        }
 
-            return usersByCity
+        async groupClientsByTeleconsultation(teleconsultation: string): Promise<any> {
+            const vetsByTeleconsultation = await this._database.selectQuery(
+                `
+				SELECT * from users u
+                LEFT JOIN vets v ON v.userId = u.userId
+                where teleconsultation = :teleconsultation
+                `,
+                {
+                    teleconsultation
+                }
+            )
+            
+            return vetsByTeleconsultation
         }
 }
 
