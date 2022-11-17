@@ -4,7 +4,7 @@ export interface IClientsRepository {
     readById(resourceId: number): Promise<ClientsEntity | undefined>,
     create(resource: ClientsEntity): Promise<ClientsEntity>,
     deleteById(resourceId: number): Promise<void>,
-    list(): Promise<ClientsEntity[]>,
+    list(filters?: any): Promise<ClientsEntity[]>,
     updateById(resource: ClientsEntity): Promise<ClientsEntity | undefined>
     groupClientsByCode(code: string): Promise<any>,
     groupClientsByTeleconsultation(teleconsultation: string): Promise<any>,

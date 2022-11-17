@@ -49,13 +49,16 @@ export class ClientsRepository implements IClientsRepository {
             return resource
         }
 
-        async list(): Promise<ClientsEntity[]> {
+        async list(filters: Sequelize.WhereOptions): Promise<ClientsEntity[]> {
+            console.log("filter-repository", filters)
             const users = await this._database.list(this._usersModel, {
                 include: [
                     'vets',
                     'addresses',
-                ]
+                ],
+                where: filters
             })
+            
 
             const client = users.map(modelToEntity)
             return client
@@ -109,7 +112,7 @@ export class ClientsRepository implements IClientsRepository {
                 const users = await this._database.readByWhere(this._usersModel, {
                     email: email
                 })
-                console.log("users-repository", users)
+             
                 return modelToEntity(users)
             } catch(err){
                 throw new Error((err as Error).message);
