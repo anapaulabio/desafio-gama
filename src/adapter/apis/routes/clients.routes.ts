@@ -8,7 +8,6 @@ import multer from "multer";
 import { multerConfig } from "../../../infrastructure/config/multer";
 
 export class ClientsRoutes extends CommonRoutesConfig{
-    upload = multer(multerConfig)
     constructor(app: express.Application){
         super(app, 'clientsRoutes')
     }
@@ -17,8 +16,8 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets`)
           .get(clientsController.listClients)
           .post(
-            clientsMiddleware.validateRegister,
-          //  this.upload.single('avatar'),
+            //clientsMiddleware.validateRegister,
+            multer(multerConfig).single('avatar'),
             clientsController.createClients)
 
         this.app.route('/vets/:userId')

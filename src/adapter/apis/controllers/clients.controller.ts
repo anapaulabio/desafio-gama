@@ -33,6 +33,7 @@ class ClientsController {
     }
     async createClients(req: express.Request, res: express.Response){
         try {
+            console.log(req)
             const clients = await createUsecase.execute(req.body)
             res.status(201).send(clients)
         } catch (error) {
