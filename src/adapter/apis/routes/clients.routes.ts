@@ -1,9 +1,10 @@
-import express from "express";
-
+import express, { response } from "express";
 import clientsController from "../controllers/clients.controller";
 import authMiddleware from "../middlewares/auth.middleware";
 import clientsMiddleware from "../middlewares/clients.middleware";
 import { CommonRoutesConfig } from "./common.routes";
+import { AuthRoutes } from "./auth.routes";
+import multer from "multer";
 
 export class ClientsRoutes extends CommonRoutesConfig{
     constructor(app: express.Application){
@@ -38,8 +39,9 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets/teleconsultation/:teleconsultation`)
           .get(clientsController.groupClientsByTeleconsultation)
         
-        this.app.use(authMiddleware.validateError)
         
+        this.app.use(authMiddleware.validateError)
+
         return this.app
     }
 }

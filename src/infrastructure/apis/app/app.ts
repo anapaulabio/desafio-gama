@@ -9,6 +9,7 @@ import { debug } from 'debug';
 import { CommonRoutesConfig } from '../../../adapter/apis/routes/common.routes';
 import { ClientsRoutes } from '../../../adapter/apis/routes/clients.routes';
 import { AuthRoutes } from '../../../adapter/apis/routes/auth.routes';
+import path from 'path';
 
 
 const app: express.Application = express();
@@ -20,6 +21,7 @@ const debugLog: debug.IDebugger = debug('app');
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+
 
 const loggerOptions: expressWinston.LoggerOptions = {
     transports: [new winston.transports.Console()],
