@@ -28,6 +28,7 @@ export default function (people: any): ClientsEntity | undefined {
     }
 
     if(people.vets){
+        (users as IVetsEntity).avatar = people.vets.avatar;
         (users as IVetsEntity).specialty = people.vets.specialty;
         (users as IVetsEntity).crmv = people.vets.crmv;
         (users as IVetsEntity).queryValue = people.vets.queryValue;

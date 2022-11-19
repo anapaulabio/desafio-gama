@@ -5,6 +5,7 @@ import clientsMiddleware from "../middlewares/clients.middleware";
 import { CommonRoutesConfig } from "./common.routes";
 import { AuthRoutes } from "./auth.routes";
 import multer from "multer";
+import { multerConfig } from "../../../infrastructure/config/multer";
 
 export class ClientsRoutes extends CommonRoutesConfig{
     constructor(app: express.Application){
@@ -15,7 +16,8 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets`)
           .get(clientsController.listClients)
           .post(
-            clientsMiddleware.validateRegister,
+            //clientsMiddleware.validateRegister,
+            multer(multerConfig).single('avatar'),
             clientsController.createClients)
 
         this.app.route('/vets/:userId')
@@ -40,12 +42,6 @@ export class ClientsRoutes extends CommonRoutesConfig{
        // this.app.route(`/vets/teleconsultation/:teleconsultation`)
         //  .get(clientsController.groupClientsByTeleconsultation)
         
-        this.app.route(`/vets/:userId/photo`)
-          //.all(authMiddleware.authJWT)
-          .post(
-              clientsMiddleware.uploadFile().single('file'),
-              clientsController.createClientBulk
-              )
 
 
         this.app.use(authMiddleware.validateError)

@@ -18,6 +18,7 @@ export default {
                 },
                 unique: true
             },
+            avatar: Sequelize.DataTypes.STRING,
             specialty: Sequelize.DataTypes.STRING,
             crmv: Sequelize.DataTypes.STRING,
             queryValue: Sequelize.DataTypes.INTEGER,

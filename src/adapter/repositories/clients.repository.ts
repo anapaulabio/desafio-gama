@@ -36,7 +36,6 @@ export class ClientsRepository implements IClientsRepository {
         async create(resource: ClientsEntity): Promise<ClientsEntity> {
             const { users, vets, addresses } = entityToModel(resource)
             const userModel = await this._database.create(this._usersModel, users)
-
             if (vets){
                 vets.userId = userModel.null
                 const vetModel = await this._database.create(this._vetsModel, vets)

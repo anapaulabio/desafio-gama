@@ -7,10 +7,7 @@
     "mocks": "tsc && node ./dist/infrastructure/persistence/mocks/mocks.js"
   },
   "dependencies": {
-
     "@types/jest": "^29.2.3",
-    "@types/multer": "^1.4.7",
-
     "@types/winston": "^2.4.4",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

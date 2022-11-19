@@ -10,7 +10,6 @@ import { CommonRoutesConfig } from '../../../adapter/apis/routes/common.routes';
 import { ClientsRoutes } from '../../../adapter/apis/routes/clients.routes';
 import { AuthRoutes } from '../../../adapter/apis/routes/auth.routes';
 
-import path from 'path';
 
 
 
@@ -21,7 +20,9 @@ const routes: CommonRoutesConfig[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({
+    extended: true,
+}));
 app.use(cors());
 
 

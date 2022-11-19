@@ -15,6 +15,7 @@ export default function (client: ClientsEntity) {
     if ('crmv' in client){
         vets = {
             userId: undefined,
+            avatar: client.avatar,
             specialty: client.specialty,
             crmv: client.crmv,
             formation: client.formation,
