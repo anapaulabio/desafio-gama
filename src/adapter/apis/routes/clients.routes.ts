@@ -5,7 +5,7 @@ import clientsMiddleware from "../middlewares/clients.middleware";
 import { CommonRoutesConfig } from "./common.routes";
 import { AuthRoutes } from "./auth.routes";
 import multer from "multer";
-import { multerConfig } from "../../../infrastructure/config/multer";
+import { multerConfig } from "../../../infrastructure/config/multer.config";
 
 export class ClientsRoutes extends CommonRoutesConfig{
     constructor(app: express.Application){
