@@ -9,7 +9,7 @@ import entityToModel from "../../infrastructure/persistence/mysql/helpers/entity
 import modelToEntity from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
 import { MysqlDatabase } from "../../infrastructure/persistence/mysql/mysql.database";
 import { IDatabaseModel } from "../../infrastructure/persistence/databasemodel.interface";
-import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
+import modelVetToEntity from "../../infrastructure/persistence/mysql/helpers/modelVetToEntity.helper";
 //import bcrypt from 'bcrypt'
 
 
@@ -25,12 +25,22 @@ export class ClientsRepository implements IClientsRepository {
             this._usersModel.hasOne(this._vetsModel, {
                 foreignKey: 'userId',
                 as: 'vets'
-            });
+            })
             
             this._usersModel.hasOne(this._addressesModel, {
                 foreignKey: 'userId',
                 as: 'addresses'
-            });
+            })
+
+            this._vetsModel.hasOne(this._usersModel, {
+                foreignKey: 'userId',
+                as: 'users'
+            })
+
+            this._vetsModel.hasOne(this._addressesModel, {
+                foreignKey: 'userId',
+                as: 'addresses',
+            })
         }
 
         async create(resource: ClientsEntity): Promise<ClientsEntity> {
@@ -53,16 +63,16 @@ export class ClientsRepository implements IClientsRepository {
 
         async list(filters: Sequelize.WhereOptions): Promise<ClientsEntity[]> {
             console.log("filter-repository", filters)
-            const users = await this._database.list(this._usersModel, {
+            const users = await this._database.list(this._vetsModel, {
                 include: [
-                    'vets',
-                    'addresses',
+                    'users',
+                    'addresses'
                 ],
                 where: filters
             })
             
 
-            const client = users.map(modelToEntity)
+            const client = users.map(modelVetToEntity)
             return client
         }
 
