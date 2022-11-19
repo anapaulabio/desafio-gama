@@ -33,15 +33,23 @@ export class ClientsRoutes extends CommonRoutesConfig{
             clientsController.updateClients
             )
 
+
         this.app.route(`/vets/cep/:code`)
           .get(clientsController.groupClientsByCode)
 
-        this.app.route(`/vets/teleconsultation/:teleconsultation`)
-          .get(clientsController.groupClientsByTeleconsultation)
+       // this.app.route(`/vets/teleconsultation/:teleconsultation`)
+        //  .get(clientsController.groupClientsByTeleconsultation)
         
-        
-        this.app.use(authMiddleware.validateError)
+        this.app.route(`/vets/:userId/photo`)
+          //.all(authMiddleware.authJWT)
+          .post(
+              clientsMiddleware.uploadFile().single('file'),
+              clientsController.createClientBulk
+              )
 
+
+        this.app.use(authMiddleware.validateError)
+        
         return this.app
     }
 }

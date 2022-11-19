@@ -14,6 +14,7 @@ import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/
 
 
 
+
 export class ClientsRepository implements IClientsRepository {
     constructor (
         private _database: IDatabaseModel,
@@ -51,13 +52,16 @@ export class ClientsRepository implements IClientsRepository {
             return resource
         }
 
-        async list(): Promise<ClientsEntity[]> {
+        async list(filters: Sequelize.WhereOptions): Promise<ClientsEntity[]> {
+            console.log("filter-repository", filters)
             const users = await this._database.list(this._usersModel, {
                 include: [
                     'vets',
                     'addresses',
-                ]
+                ],
+                where: filters
             })
+            
 
             const client = users.map(modelToEntity)
             return client
@@ -107,38 +111,18 @@ export class ClientsRepository implements IClientsRepository {
         }
 
 
-        async readByWhere(email: string, password: string): Promise<ClientsEntity | undefined> {
+        async readByWhere(email: string): Promise<ClientsEntity | undefined> {
             try{
                 const users = await this._database.readByWhere(this._usersModel, {
-                    email: email,
-                    password: password
-                });
-                
-                return modelToEntityHelper(users);
-
+                    email: email
+                })
+             
+                return modelToEntity(users)
             } catch(err){
                 throw new Error((err as Error).message);
             }
         }
-        // async listLogin(email: string, password: string): Promise<ClientsEntity | undefined> {
-        //     try {
-        //         const foundClient: ClientsEntity = await this._database.listOneByWhere(this._usersModel, {
-        //             email: email
-        //         });
-        //         /*if (foundClient) {
-        //             if (bcrypt.compareSync(password, foundClient.password)) {
-        //                 return modelToEntityHelper(foundClient);
-        //             } else {
-        //                 return
-        //             }
-        //         } else {
-        //             return
-        //         }*/
-        //         return
-        //     } catch (error) {
-        //         throw new Error((error as Error).message);
-        //     }
-        // }
+
 
         async groupClientsByCode(code: string): Promise<ClientsEntity> {
             const vetsByCode = await this._database.selectQuery(

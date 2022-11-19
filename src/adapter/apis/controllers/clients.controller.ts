@@ -14,8 +14,8 @@ import groupByTeleconsultationUsecase from "../../../domain/usecases/users/group
 class ClientsController {
     async listClients(req: express.Request, res: express.Response){
         try {
-           const clients = await listUsecase.execute()
-
+           const clients = await listUsecase.execute(req.query)
+            console.log("req.query", req.query)
            res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
@@ -55,6 +55,7 @@ class ClientsController {
             res.status(204).send()
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))            
+
         }
     }
     async groupClientsByCode(req: express.Request, res: express.Response){
@@ -66,6 +67,7 @@ class ClientsController {
         }
     }
 
+
     async groupClientsByTeleconsultation(req: express.Request, res: express.Response){
         try {
             const clients = await groupByTeleconsultationUsecase.execute(req.params.teleconsultation)
@@ -73,6 +75,16 @@ class ClientsController {
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
+    }
+
+    async createClientBulk(req: express.Request, res: express.Response) {
+        let countUsers = 0;
+        for (countUsers = 0; countUsers < req.body.fileData.length; countUsers++) {
+            await createUsecase.execute(req.body.fileData[countUsers])
+        }
+        res.status(201).send({
+            createdUsers: countUsers
+        })
     }
 }
 
