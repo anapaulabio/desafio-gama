@@ -1,9 +1,10 @@
-import express from "express";
-
+import express, { response } from "express";
 import clientsController from "../controllers/clients.controller";
 import authMiddleware from "../middlewares/auth.middleware";
 import clientsMiddleware from "../middlewares/clients.middleware";
 import { CommonRoutesConfig } from "./common.routes";
+import { AuthRoutes } from "./auth.routes";
+import multer from "multer";
 
 export class ClientsRoutes extends CommonRoutesConfig{
     constructor(app: express.Application){
@@ -32,6 +33,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
             clientsController.updateClients
             )
 
+
         this.app.route(`/vets/cep/:code`)
           .get(clientsController.groupClientsByCode)
 
@@ -44,6 +46,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
               clientsMiddleware.uploadFile().single('file'),
               clientsController.createClientBulk
               )
+
 
         this.app.use(authMiddleware.validateError)
         

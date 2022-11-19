@@ -9,6 +9,9 @@ import entityToModel from "../../infrastructure/persistence/mysql/helpers/entity
 import modelToEntity from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
 import { MysqlDatabase } from "../../infrastructure/persistence/mysql/mysql.database";
 import { IDatabaseModel } from "../../infrastructure/persistence/databasemodel.interface";
+import modelToEntityHelper from "../../infrastructure/persistence/mysql/helpers/modelToEntity.helper";
+//import bcrypt from 'bcrypt'
+
 
 
 
@@ -107,6 +110,7 @@ export class ClientsRepository implements IClientsRepository {
             await this._database.delete(this._usersModel, {userId: resourceId})
         }
 
+
         async readByWhere(email: string): Promise<ClientsEntity | undefined> {
             try{
                 const users = await this._database.readByWhere(this._usersModel, {
@@ -118,6 +122,7 @@ export class ClientsRepository implements IClientsRepository {
                 throw new Error((err as Error).message);
             }
         }
+
 
         async groupClientsByCode(code: string): Promise<ClientsEntity> {
             const vetsByCode = await this._database.selectQuery(

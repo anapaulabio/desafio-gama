@@ -1,9 +1,11 @@
 import express from "express";
+
 import { validate, Joi } from 'express-validation';
 import multer from "multer";
 import path from "path";
 
 import xlsxFiles from "../../../infrastructure/files/xlsx.files";
+
 import readUsecase from "../../../domain/usecases/users/read.usecase";
 import constantsConfig from "../../../infrastructure/config/constants.config";
 import logger from '../../../infrastructure/logs/winston.logs';
@@ -44,6 +46,7 @@ class ClientsMiddleware {
             res.status(404).send({ERROR: constantsConfig.CLIENTS.MESSAGES.ERROR.USER_NOT_EXIST.replace('{USER_ID}', req.params.userId)})
         }
     }
+
 
     uploadFile(){
         return multer({

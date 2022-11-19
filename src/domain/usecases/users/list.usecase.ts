@@ -9,6 +9,7 @@ class ListClientUseCase implements IUseCase {
     async execute(filters: object): Promise<ClientsEntity[] | undefined> {
         console.log("filters-usecase", filters);
         return await this._repository.list(filters);
+
     }
 }
 

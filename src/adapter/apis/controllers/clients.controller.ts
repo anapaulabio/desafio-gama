@@ -10,6 +10,7 @@ import readUsecase from "../../../domain/usecases/users/read.usecase";
 import groupByCodeUsecase from "../../../domain/usecases/users/groupByCode.usecase";
 import groupByTeleconsultationUsecase from "../../../domain/usecases/users/groupByTeleconsultation.usecase";
 
+
 class ClientsController {
     async listClients(req: express.Request, res: express.Response){
         try {
@@ -54,6 +55,7 @@ class ClientsController {
             res.status(204).send()
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))            
+
         }
     }
     async groupClientsByCode(req: express.Request, res: express.Response){
@@ -64,6 +66,7 @@ class ClientsController {
             return res.status(500).send(getErrorMessage(error))         
         }
     }
+
 
     async groupClientsByTeleconsultation(req: express.Request, res: express.Response){
         try {
