@@ -6,6 +6,7 @@ export default MysqlDatabase.getInstance().createModel('vets', {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
     },
+    avatar: Sequelize.DataTypes.STRING,
     userId: Sequelize.DataTypes.INTEGER,
     specialty: Sequelize.DataTypes.STRING,
     crmv: Sequelize.DataTypes.STRING,
