@@ -8,5 +8,4 @@ export interface IUsersEntity {
     email: string,
     password: string,
     phoneNumber: string,
-    whatsappLink: string
 }

@@ -15,10 +15,12 @@ class ClientsMiddleware {
             email: Joi.string().email().required(),
             password: Joi.string().min(8).required(),
             phoneNumber: Joi.string().required(),
-            whatsappLink: Joi.string(),
+            avatar: Joi.string(),
             specialty: Joi.string(),
             crmv: Joi.string().required(),
+            aboutMe: Joi.string(),
             queryValue: Joi.number(),
+            queryDutyValue: Joi.number(),
 	        formation: Joi.string(),
 	        experience: Joi.string(),
 	        teleconsultation: Joi.boolean()

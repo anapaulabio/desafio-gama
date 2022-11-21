@@ -20,9 +20,11 @@ const routes: CommonRoutesConfig[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true,
-}));
+app.use(
+    express.urlencoded({
+        extended: true,
+    })
+);
 app.use(cors());
 
 
@@ -35,7 +37,7 @@ const loggerOptions: expressWinston.LoggerOptions = {
     ),
 }
 
-if(!process.env.DEBUG) {
+if (!process.env.DEBUG) {
     loggerOptions.meta = false;
 }
 

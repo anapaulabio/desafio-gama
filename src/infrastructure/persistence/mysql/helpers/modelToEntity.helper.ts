@@ -13,7 +13,7 @@ export default function (people: any): ClientsEntity | undefined {
         email: people.email,
         password: people.password,
         phoneNumber: people.phoneNumber,
-        whatsappLink: people.whatsappLink
+      
     }
 
     if(people.addresses){
@@ -31,7 +31,9 @@ export default function (people: any): ClientsEntity | undefined {
         (users as IVetsEntity).avatar = people.vets.avatar;
         (users as IVetsEntity).specialty = people.vets.specialty;
         (users as IVetsEntity).crmv = people.vets.crmv;
+        (users as IVetsEntity).aboutMe = people.vets.aboutMe;
         (users as IVetsEntity).queryValue = people.vets.queryValue;
+        (users as IVetsEntity).queryDutyValue = people.vets.queryDutyValue;
         (users as IVetsEntity).formation = people.vets.formation;
         (users as IVetsEntity).experience = people.vets.experience;
         (users as IVetsEntity).teleconsultation = people.vets.teleconsultation;
