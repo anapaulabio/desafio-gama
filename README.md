@@ -1,28 +1,37 @@
-<h1 align=center> API </hi>
+<div align="center">
+
+![Alt text](/img/Group%20127.png)
+![](/img/cacaVet.png)
+
+</div>
 
 
 ## 💻 Sobre o projeto
+Em um contexto pós-pandemia surgem novas formas de trabalho e comunicação, muitos setores da sociedade integram-se nas tecnologias e as fazem grandes aliadas no mundo corporativo. Empresas apostaram no home office e muitas delas continuam nesse sistema, mesmo com o fim do isolamento social obrigatório.  Em decorrência disso, houve um aumento da sensação de solidão e pessoas se afugentaram dessa situação, adotando animais.
+
+Com essa demanda de novos *“pais e mães de pet”*, a busca por cuidados dos animais intensifica-se e o mercado busca outras maneiras de inovação. Como designers de experiência, nossa missão é captar os problemas que afligem as pessoas e transformá-los em solução. 
+
+Para atender essa nova demanda, construímos uma aplicação para facilitar a comunicação entre os tutores na busca por pessoas veterinárias. **O “CaçaVet”** é uma vitrine para vets e uma facilidade e segurança para tutores.
+ 
 <br>
-- EM ANDAMENTO
 
 ## 📁 Funcionalidades da API
 
-### Users
-- Post/Login
-- Get/Listar
-- Post/Cadastrar
-- Put/Editar
-- Delete/Apagar
+ - Cadastro de Veterinários que dispôem todas suas informações para agendamento de consultas;
 
-### Posts
-- Get/Listar
-- Post/Criar novo post
-- Put/Editar
+ - Edição de dados realizado após a autenticação do veterinário;
+
+ - Filtragem de veterinários por localização a partir do CEP;
+
+ - Filtragem de Veterinários que aceitem teleconsulta;
+
+<br>
 
 ## Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/). 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+<br>
 
 ## 🎲 Rodando o Back End (servidor)
 
@@ -54,7 +63,7 @@ $ npx sequelize db:create
 $ npx sequelize-cli db:migrate
 
 # Crie seeds para seu banco de dados:
-$ npx sequelize-cli db:ssed:all
+$ npx sequelize-cli db:seed:all
 
 # Inicie a aplicação:
 $ npm run debug
@@ -95,5 +104,28 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h2> 👨‍💻 Contribuidores </h2><br>
 
-- Ana Paula Oliveira 
-- Carlos Eduardo
+<table>
+  <tr>
+    <td align="center">
+      <a target="_blank" href="https://www.linkedin.com/in/anapaulaoliveiraa/">
+        <img src="https://avatars.githubusercontent.com/u/104741998?v=4" width="100px;" alt=""/><br>
+        <sub>
+          <b>Ana Paula Oliveira</b>
+          <p>Back-End</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a target="_blank" href="https://www.linkedin.com/in/carlos-henrique-sodr%C3%A9-gomes-858b48216/">
+        <img src="https://avatars.githubusercontent.com/u/106976017?v=4" width="100px;" alt=""/><br>
+        <sub>
+          <b>Carlos Henrique Sodré</b>
+           <p>Back-End</p>
+        </sub>
+      </a>
+    </td>
+   
+
+</table>
+
+<br><br>
