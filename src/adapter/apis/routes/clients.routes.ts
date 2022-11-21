@@ -25,13 +25,14 @@ export class ClientsRoutes extends CommonRoutesConfig{
             clientsMiddleware.validateGetById,
             clientsMiddleware.valitateUserExists
             )
-          .get(clientsController.listClients)
+          .get(clientsController.getClientsById)
           .delete(
             authMiddleware.authJWT,
             clientsController.deleteClients
             )
           .put(
-            authMiddleware.authJWT,
+            //authMiddleware.authJWT,
+            multer(multerConfig).single('avatar'),
             clientsController.updateClients
             )
 

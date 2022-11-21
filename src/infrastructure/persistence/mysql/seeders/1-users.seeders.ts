@@ -9,8 +9,7 @@ export default {
                 "code": "35530000",
                 "email": "jose_antonio@outlook.com",
                 "password": "12345678",
-                "phoneNumber": "74992856030",
-                "whatsappLink": "whatsapp/74992856030/link.com"
+                "phoneNumber": "74992856030"
             },
             {
                 "userId": 2,
@@ -19,7 +18,6 @@ export default {
                 "email": "mkolscheck@gmail.com",
                 "password": "12345678",
                 "phoneNumber": "11981456322",
-                "whatsappLink": "whatsapp/11981456322/link.com"
             },
             {
                 "userId": 3,
@@ -28,7 +26,6 @@ export default {
                 "email": "oliveira_angelo@gmail.com",
                 "password": "12345678",
                 "phoneNumber": "89998654777",
-                "whatsappLink": "whatsapp/89998654777/link.com"
             },
             {
                 "userId": 4,
@@ -37,7 +34,6 @@ export default {
                 "email": "matos_julia@gmail.com",
                 "password": "12345678",
                 "phoneNumber": "49981458900",
-                "whatsappLink": "whatsapp/49981458900/link.com"
             }
         ])
     },

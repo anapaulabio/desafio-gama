@@ -11,8 +11,10 @@ export default function (people: any): ClientsEntity | undefined {
         userId: people.userId,
         avatar: people.avatar,
         crmv: people.crmv,
+        aboutMe: people.aboutMe,
         specialty: people.specialty,
         queryValue: people.queryValue,
+        queryDutyValue: people.queryDutyValue,
         formation: people.formation,
         experience: people.experience,
         teleconsultation: people.teleconsultation,
@@ -21,7 +23,7 @@ export default function (people: any): ClientsEntity | undefined {
         email: people.email,
         password: people.password,
         phoneNumber: people.phoneNumber,
-        whatsappLink: people.whatsappLink
+        
     }
 
     if (people.users){

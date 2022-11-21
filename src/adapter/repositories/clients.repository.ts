@@ -78,14 +78,14 @@ export class ClientsRepository implements IClientsRepository {
 
         async readById(resourceId: number): Promise<ClientsEntity | undefined> {
             try {
-                const users = await this._database.read(this._usersModel, resourceId, {
+                const users = await this._database.read(this._vetsModel, resourceId, {
                     include: [
-                        'vets',
+                        'users',
                         'addresses'
                     ]
                 })
 
-                return modelToEntity(users)
+                return modelVetToEntity(users)
             } catch (error) {
                 
             }

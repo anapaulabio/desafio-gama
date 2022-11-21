@@ -8,7 +8,6 @@ export default function (client: ClientsEntity) {
         email: client.email,
         password: client.password,
         phoneNumber: client.phoneNumber,
-        whatsappLink: client.whatsappLink
     }
 
     let vets = undefined
@@ -18,6 +17,9 @@ export default function (client: ClientsEntity) {
             avatar: client.avatar,
             specialty: client.specialty,
             crmv: client.crmv,
+            aboutMe: client.aboutMe,
+            queryValue: client.queryValue,
+            queryDutyValue: client.queryDutyValue,
             formation: client.formation,
             experience: client.experience,
             teleconsultation: client.teleconsultation
