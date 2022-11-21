@@ -16,9 +16,15 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets`)
           .get(clientsController.listClients)
           .post(
-            //clientsMiddleware.validateRegister,
+            clientsMiddleware.validateRegister,
+            clientsController.createClients
+            )
+          
+        this.app.route(`/vets/photos`)
+          .post(
             multer(multerConfig).single('avatar'),
-            clientsController.createClients)
+            clientsController.createImage
+            )
 
         this.app.route('/vets/:userId')
           .all(
@@ -31,19 +37,14 @@ export class ClientsRoutes extends CommonRoutesConfig{
             clientsController.deleteClients
             )
           .put(
-            //authMiddleware.authJWT,
-            multer(multerConfig).single('avatar'),
+            authMiddleware.authJWT,
             clientsController.updateClients
             )
 
 
         this.app.route(`/vets/cep/:code`)
           .get(clientsController.groupClientsByCode)
-
-       // this.app.route(`/vets/teleconsultation/:teleconsultation`)
-        //  .get(clientsController.groupClientsByTeleconsultation)
-        
-
+      
 
         this.app.use(authMiddleware.validateError)
         

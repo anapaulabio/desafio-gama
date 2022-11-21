@@ -15,7 +15,6 @@ class ClientsController {
     async listClients(req: express.Request, res: express.Response){
         try {
            const clients = await listUsecase.execute(req.query)
-            console.log("req.query", req.query)
            res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
@@ -33,7 +32,6 @@ class ClientsController {
     }
     async createClients(req: express.Request, res: express.Response){
         try {
-            console.log(req)
             const clients = await createUsecase.execute(req.body)
             res.status(201).send(clients)
         } catch (error) {
@@ -68,15 +66,21 @@ class ClientsController {
         }
     }
 
-
-    async groupClientsByTeleconsultation(req: express.Request, res: express.Response){
+    async createImage( req: express.Request, res: express.Response){
+        try {
+            res.status(201).send({avatar: `uploads/${req.file!.filename}`})
+        } catch (error) {
+            return res.status(500).send(getErrorMessage(error))
+        }
+    }
+    /*async groupClientsByTeleconsultation(req: express.Request, res: express.Response){
         try {
             const clients = await groupByTeleconsultationUsecase.execute(req.params.teleconsultation)
             res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
-    }
+    }*/
 
     async createClientBulk(req: express.Request, res: express.Response) {
         let countUsers = 0;

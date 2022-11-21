@@ -21,7 +21,7 @@ export const multerConfig = {
         }
     }),
     limits:{
-        fileSize: 8 * 1024 * 1024 //8mb
+        fileSize: 4 * 1024 * 1024 //4mb
     },
     fileFilter: (req, file, callback) => {
         const formats = [
