@@ -4,6 +4,7 @@ import * as http from 'http';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import cors from 'cors';
+import path from 'path';
 import { debug } from 'debug';
 
 import { CommonRoutesConfig } from '../../../adapter/apis/routes/common.routes';
@@ -26,6 +27,7 @@ app.use(
     })
 );
 app.use(cors());
+app.use('/static', express.static(path.resolve('uploads')))
 
 
 const loggerOptions: expressWinston.LoggerOptions = {
