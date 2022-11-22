@@ -6,6 +6,6 @@ export interface IUsersEntity {
     address?: IAddressesEntity,
     code?: string,
     email: string,
-    password: string,
+    password?: string,
     phoneNumber?: string,
 }
