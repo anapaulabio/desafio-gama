@@ -4,8 +4,8 @@ export interface IUsersEntity {
     userId?: number,
     name: string,
     address?: IAddressesEntity,
-    code: string,
+    code?: string,
     email: string,
     password: string,
-    phoneNumber: string,
+    phoneNumber?: string,
 }
