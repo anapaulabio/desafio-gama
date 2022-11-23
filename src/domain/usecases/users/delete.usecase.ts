@@ -2,7 +2,7 @@ import { IClientsRepository } from "../../repositories/clients.repository.interf
 import ClientsRepository from "../../../adapter/repositories/clients.repository";
 import { IUseCase } from "../usecase.interface";
 
-class DeleteClientUseCase implements IUseCase {
+export class DeleteClientUseCase implements IUseCase {
     constructor(private _repository: IClientsRepository) {}
 
     async execute(data: { userId: number }): Promise<void> {
