@@ -19,7 +19,7 @@ export class LoginAuthUseCase implements IUseCase {
             throw new Error(constantsConfig.AUTH.MESSAGES.ERROR.INVALID_EMAIL)
         }
 
-        const isMatch = bcrypt.compareSync(data.password, user!.password)
+        const isMatch = bcrypt.compareSync(data.password, user!.password!)
 
         if (isMatch) {
             const token = jwt.sign(user, secret, {

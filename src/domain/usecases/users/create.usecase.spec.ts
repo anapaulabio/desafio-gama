@@ -4,7 +4,7 @@ import { ClientsRepository } from "../../../adapter/repositories/clients.reposit
 import { ViaCepFactory } from "../../../infrastructure/apis/cep/viacepfactory.api";
 import { ApiCepFactory } from "../../../infrastructure/apis/cep/apicepfactory.api";
 
-jest.mock("../../../adapters/repositories/clients.repository");
+jest.mock("../../../adapter/repositories/clients.repository");
 const ClientsRepositoryMock = ClientsRepository as jest.Mock<ClientsRepository>;
 
 test("Teste createClientUsecase", async ( ) => {
@@ -12,7 +12,7 @@ test("Teste createClientUsecase", async ( ) => {
     clientRepository.create.mockResolvedValue({
         "userId": 1,
         "name": "Antônio José Silva",
-        "code": "35530000",
+        "code": "35530-000",
         "email": "jose_antonio@outlook.com",
         "password": "12345678",
         "phoneNumber": "74992856030",
@@ -28,9 +28,17 @@ test("Teste createClientUsecase", async ( ) => {
     const client: ClientsEntity = {
         "userId": 1,
         "name": "Antônio José Silva",
-        "code": "35530000",
+        "code": "35530-000",
         "email": "jose_antonio@outlook.com",
-        "password": "12345678",
+        "password": "123456789",
+        "phoneNumber": "74992856030"
+    };
+    const client1: ClientsEntity = {
+        "userId": 1,
+        "name": "Antônio José Silva",
+        "code": "35530-000",
+        "email": "jose_antonio@outlook.com",
+        "password": undefined,
         "phoneNumber": "74992856030"
     };
 
@@ -40,5 +48,5 @@ test("Teste createClientUsecase", async ( ) => {
         new ApiCepFactory()
     );
 
-    expect (await createClientUseCase.execute(client)).toMatchObject(client);
+    expect (await createClientUseCase.execute(client)).toMatchObject(client1);
 });

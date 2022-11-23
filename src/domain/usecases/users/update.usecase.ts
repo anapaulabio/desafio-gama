@@ -14,7 +14,7 @@ class UpdateClientUseCase implements IUseCase {
         private _viaCep: CepFactory, private _apiCep: CepFactory) {}
 
     async execute(data: ClientsEntity): Promise<ClientsEntity | undefined> {
-        data.password = bcrypt.hashSync(data.password, 10)
+        data.password = bcrypt.hashSync(data.password!, 10)
        data.address = await this._viaCep.preencheEndereco(data.code!)
         if(!data.address) {
             await this._apiCep.preencheEndereco(data.code!)
