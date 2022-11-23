@@ -9,19 +9,20 @@ import { debug } from 'debug';
 import { CommonRoutesConfig } from '../../../adapter/apis/routes/common.routes';
 import { ClientsRoutes } from '../../../adapter/apis/routes/clients.routes';
 import { AuthRoutes } from '../../../adapter/apis/routes/auth.routes';
+import apiConfig from '../../config/api.config';
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const port = 3000;
+const port = apiConfig.port;
 const routes: CommonRoutesConfig[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(express.json());
-/*app.use(
+app.use(
     express.urlencoded({
         extended: true,
     })
-);*/
+);
 app.use(cors());
 
 
