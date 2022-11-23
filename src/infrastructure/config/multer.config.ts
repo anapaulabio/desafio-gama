@@ -7,7 +7,7 @@ import { S3Client } from "@aws-sdk/client-s3";
 const s3 = new S3Client({})
 
 export const storageTypes = {
-   
+   /*
        dest: path.resolve(__dirname, '..', '..', '..', 'uploads'),
        local: multer.diskStorage({
         destination:(req, file, callback) => {
@@ -22,7 +22,7 @@ export const storageTypes = {
                 callback(null, filename)
             })
         }
-    }),/*
+    }),*/
     s3: multerS3({
         s3: s3,
         bucket: String(process.env.BUCKET_NAME),
@@ -35,7 +35,7 @@ export const storageTypes = {
                 callback(null, filename)
             })
         }
-    }),*/
+    }),
     limits:{
         fileSize: 2 * 1024 * 1024 //2mb
     },
