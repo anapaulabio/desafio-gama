@@ -37,7 +37,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
             clientsController.deleteClients
             )
           .put(
-            authMiddleware.authJWT,
+           // authMiddleware.authJWT,
             clientsController.updateClients
             )
 
