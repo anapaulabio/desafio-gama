@@ -8,7 +8,6 @@ import updateUsecase from "../../../domain/usecases/users/update.usecase";
 import listUsecase from "../../../domain/usecases/users/list.usecase";
 import readUsecase from "../../../domain/usecases/users/read.usecase";
 import groupByCodeUsecase from "../../../domain/usecases/users/groupByCode.usecase";
-import groupByTeleconsultationUsecase from "../../../domain/usecases/users/groupByTeleconsultation.usecase";
 
 
 class ClientsController {
@@ -38,9 +37,10 @@ class ClientsController {
             return res.status(500).send(getErrorMessage(error))
         }
     }
+
     async updateClients(req: express.Request, res: express.Response){
         try {
-            let clients = await updateUsecase.execute(req.body)
+            const clients = await updateUsecase.execute(req.body)
             res.status(200).send(clients)
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))

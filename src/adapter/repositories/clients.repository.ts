@@ -133,7 +133,7 @@ export class ClientsRepository implements IClientsRepository {
         }
 
 
-        async groupClientsByCode(code: string): Promise<ClientsEntity> {
+        async groupClientsByCode(code: string): Promise<ClientsEntity | undefined> {
             const vetsByCode = await this._database.selectQuery(
                 `
                 SELECT * from vets v
@@ -149,21 +149,7 @@ export class ClientsRepository implements IClientsRepository {
             return vetsByCode
             
         }
-
-        async groupClientsByTeleconsultation(teleconsultation: string): Promise<any> {
-            const vetsByTeleconsultation = await this._database.selectQuery(
-                `
-				SELECT * from users u
-                LEFT JOIN vets v ON v.userId = u.userId
-                where teleconsultation = :teleconsultation
-                `,
-                {
-                    teleconsultation
-                }
-            )
-            
-            return vetsByTeleconsultation
-        }
+     
 }
 
 export default new ClientsRepository(

@@ -10,7 +10,7 @@ export default MysqlDatabase.getInstance().createModel('users', {
     code: Sequelize.DataTypes.STRING,
     email: Sequelize.DataTypes.STRING,
     password: Sequelize.DataTypes.STRING,
-    phoneNumber: Sequelize.DataTypes.INTEGER,
+    phoneNumber: Sequelize.DataTypes.STRING,
     createdAt: Sequelize.DataTypes.DATE,
     updatedAt:  Sequelize.DataTypes.DATE
 });

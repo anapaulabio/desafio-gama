@@ -4,15 +4,11 @@ import * as http from 'http';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import cors from 'cors';
-import path from 'path';
 import { debug } from 'debug';
 
 import { CommonRoutesConfig } from '../../../adapter/apis/routes/common.routes';
 import { ClientsRoutes } from '../../../adapter/apis/routes/clients.routes';
 import { AuthRoutes } from '../../../adapter/apis/routes/auth.routes';
-
-
-
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
@@ -21,13 +17,13 @@ const routes: CommonRoutesConfig[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(express.json());
-app.use(
+/*app.use(
     express.urlencoded({
         extended: true,
     })
-);
+);*/
 app.use(cors());
-app.use('/static', express.static(path.resolve('uploads')))
+
 
 
 const loggerOptions: expressWinston.LoggerOptions = {
