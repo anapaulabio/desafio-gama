@@ -3,7 +3,7 @@ import { IClientsRepository } from "../../repositories/clients.repository.interf
 import ClientsRepository from "../../../adapter/repositories/clients.repository";
 import { IUseCase } from "../usecase.interface";
 
-class ListClientUseCase implements IUseCase {
+export class ListClientUseCase implements IUseCase {
     constructor(private _repository: IClientsRepository) {}
 
     async execute(filters: object): Promise<ClientsEntity[] | undefined> {

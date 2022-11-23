@@ -15,7 +15,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
         this.app.route(`/vets`)
           .get(clientsController.listClients)
           .post(
-            clientsMiddleware.validateRegister,
+            //clientsMiddleware.validateRegister,
             clientsController.createClients
             )
           
