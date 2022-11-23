@@ -33,14 +33,10 @@ test("Teste createClientUsecase", async ( ) => {
         "password": "123456789",
         "phoneNumber": "74992856030"
     };
-    const client1: ClientsEntity = {
-        "userId": 1,
-        "name": "Antônio José Silva",
-        "code": "35530-000",
-        "email": "jose_antonio@outlook.com",
-        "password": undefined,
-        "phoneNumber": "74992856030"
-    };
+    let clientRef: object = {};
+    Object.assign(clientRef, client);
+    (clientRef as ClientsEntity).password = undefined;
+
 
     const createClientUseCase = new CreateClientUseCase (
         clientRepository,
@@ -48,5 +44,5 @@ test("Teste createClientUsecase", async ( ) => {
         new ApiCepFactory()
     );
 
-    expect (await createClientUseCase.execute(client)).toMatchObject(client1);
+    expect (await createClientUseCase.execute(client)).toMatchObject(clientRef);
 });
