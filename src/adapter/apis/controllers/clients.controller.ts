@@ -68,7 +68,7 @@ class ClientsController {
 
     async createImage( req: express.Request, res: express.Response){
         try {
-            res.status(201).send({avatar: req.file!.fieldname})
+            res.status(201).send({avatar: req.file!.filename})
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
