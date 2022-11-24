@@ -21,7 +21,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
           
         this.app.route(`/vets/photos`)
           .post(
-            multer(storageTypes).single('avatar'),
+            multer(storageTypes.upload).single('avatar'),
             clientsController.createImage
             )
 
