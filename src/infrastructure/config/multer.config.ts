@@ -4,7 +4,7 @@ import path, { resolve } from "path";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
-const s3 = new S3Client({})
+const s3 = new S3Client({region: "sa-east-1"})
 
 export const storageTypes = {
    /*
