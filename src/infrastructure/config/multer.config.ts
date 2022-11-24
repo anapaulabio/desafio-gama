@@ -55,5 +55,21 @@ export const upload = multer({
                 cb(null, filename)
             })
         }
-    })
+    }),
+    limits:{
+        fileSize: 4 * 1024 * 1024 //4mb
+    },
+    fileFilter: (req, file, callback) => {
+        const formats = [
+            'image/jpeg',
+            'image/jpg',
+            'image/png',
+        ];
+
+        if (formats.includes(file.mimetype)) {
+            callback(null,true)
+        } else {
+            callback (new Error ('format not accepted'))
+        }
+    }
 })
