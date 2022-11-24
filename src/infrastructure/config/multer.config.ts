@@ -4,9 +4,12 @@ import { resolve } from "path";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
-
 const s3 = new S3Client({ 
-    region: process.env.AWS_DEFAULT_REGION,
+    region: process.env.AWS_DEFAULT_REGION, 
+    credentials: { 
+        accessKeyId: String(process.env.AWS_ACCESS_KEY_ID), 
+        secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY)
+    } 
 });
 
 /* export const multerConfig = {

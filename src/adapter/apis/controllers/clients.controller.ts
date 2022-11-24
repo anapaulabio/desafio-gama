@@ -8,6 +8,7 @@ import updateUsecase from "../../../domain/usecases/users/update.usecase";
 import listUsecase from "../../../domain/usecases/users/list.usecase";
 import readUsecase from "../../../domain/usecases/users/read.usecase";
 import groupByCodeUsecase from "../../../domain/usecases/users/groupByCode.usecase";
+import { upload } from "../../../infrastructure/config/multer.config";
 
 
 class ClientsController {
