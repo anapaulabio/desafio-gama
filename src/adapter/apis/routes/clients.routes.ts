@@ -4,7 +4,7 @@ import authMiddleware from "../middlewares/auth.middleware";
 import clientsMiddleware from "../middlewares/clients.middleware";
 import { CommonRoutesConfig } from "./common.routes";
 import multer from "multer";
-import { storageTypes } from "../../../infrastructure/config/multer.config";
+import { multerConfig } from "../../../infrastructure/config/multer.config";
 
 export class ClientsRoutes extends CommonRoutesConfig{
     constructor(app: express.Application){
@@ -21,7 +21,7 @@ export class ClientsRoutes extends CommonRoutesConfig{
           
         this.app.route(`/vets/photos`)
           .post(
-            multer(storageTypes.upload).single('avatar'),
+            multer(multerConfig).single('avatar'),
             clientsController.createImage
             )
 
