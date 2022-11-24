@@ -68,29 +68,12 @@ class ClientsController {
 
     async createImage( req: express.Request, res: express.Response){
         try {
-            res.status(201).send({avatar: `uploads/${req.file!.filename}`})
+            res.status(201).send({avatar: req.file!.filename})
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
     }
-    /*async groupClientsByTeleconsultation(req: express.Request, res: express.Response){
-        try {
-            const clients = await groupByTeleconsultationUsecase.execute(req.params.teleconsultation)
-            res.status(200).send(clients)
-        } catch (error) {
-            return res.status(500).send(getErrorMessage(error))
-        }
-    }*/
-
-    async createClientBulk(req: express.Request, res: express.Response) {
-        let countUsers = 0;
-        for (countUsers = 0; countUsers < req.body.fileData.length; countUsers++) {
-            await createUsecase.execute(req.body.fileData[countUsers])
-        }
-        res.status(201).send({
-            createdUsers: countUsers
-        })
-    }
+    
 }
 
 export default new ClientsController()
