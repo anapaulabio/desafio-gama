@@ -44,11 +44,17 @@ export const upload = multer({
         s3: s3,
         bucket: String(process.env.BUCKET_NAME),
         metadata: function (req, file, cb) {
-            cb(null, Object.assign({}, req.file));
-          },
-          key: function (req, file, cb) {
-            cb(null, req.file?.filename + ".jpg");
-          }
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: (req, file, cb) => {
+            randomBytes(16, (error, hash) => {
+                if (error) {
+                    cb(error, file.filename)
+                }
+                const filename = `${hash.toString('hex')}.png`
+                cb(null, filename)
+            })
+        }
     }),
     limits:{
         fileSize: 4 * 1024 * 1024 //4mb
