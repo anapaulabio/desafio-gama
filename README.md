@@ -12,7 +12,8 @@ Com essa demanda de novos *“pais e mães de pet”*, a busca por cuidados dos 
 Para atender essa nova demanda, construímos uma aplicação para facilitar a comunicação entre os tutores na busca por pessoas veterinárias. **O “CaçaVet”** é uma vitrine para vets e uma facilidade e segurança para tutores.
 <br><br>
  
- ![Alt text](../../../../../../../C:/Users/anapa/OneDrive/Documentos/XP44_atividades/desafio-gama/img/como.png)
+ ![Alt text](/img/como.png)
+ 
 <br><br>
 
 ## 📁 Funcionalidades da API
@@ -88,7 +89,8 @@ $ git clone https://github.com/anapaulabio/caca-vet-documentation
 ```
 
 <br><br>
-![Alt text](../../../../../../../C:/Users/anapa/OneDrive/Documentos/XP44_atividades/desafio-gama/img/doc.png)
+
+![Alt text](/img/doc.png)
 
 <br><br>
 
