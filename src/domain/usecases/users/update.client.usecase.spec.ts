@@ -20,13 +20,10 @@ test("Teste unitário UpdateClientUsecase", async() => {
         "password": "123456789",
         "phoneNumber": "74992856030"
     };
-    const client3: ClientsEntity = {
-        "userId": 1,
-        "name": "Antasônio José Silva",
-        "code": "35530-000",
-        "email": "jose_antonio@outlook.com",
-        "password": "123456789",
-        "phoneNumber": "74992856030"
-    };
-    expect(await updateUsecase.execute(client2)).toMatchObject(client3);
+    const res = await updateUsecase.execute(client2);
+    expect(res?.userId).toBe(client2.userId);
+    expect(res?.name).toBe(client2.name);
+    expect(res?.code).toBe(client2.code);
+    expect(res?.email).toBe(client2.email);
+    expect(res?.phoneNumber).toBe(client2.phoneNumber);
 });
