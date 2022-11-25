@@ -1,20 +1,15 @@
 import { randomBytes } from "crypto";
-import multer, { diskStorage, Options } from "multer";
-import { resolve } from "path";
+import multer, { Options } from "multer";
+import path, { resolve } from "path";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 
-const s3 = new S3Client({ 
-    region: process.env.AWS_DEFAULT_REGION, 
-    credentials: { 
-        accessKeyId: String(process.env.AWS_ACCESS_KEY_ID), 
-        secretAccessKey: String(process.env.AWS_SECRET_ACCESS_KEY)
-    } 
-});
+const s3 = new S3Client({region: "sa-east-1"})
 
-/* export const multerConfig = {
-    dest: resolve(__dirname, '..', '..', '..', 'uploads'),
-    storage: diskStorage({
+export const storageTypes = {
+   /*
+       dest: path.resolve(__dirname, '..', '..', '..', 'uploads'),
+       local: multer.diskStorage({
         destination:(req, file, callback) => {
             callback(null, resolve(__dirname, '..', '..', '..', 'uploads'))
         },
@@ -27,43 +22,22 @@ const s3 = new S3Client({
                 callback(null, filename)
             })
         }
-    }),
-    limits:{
-        fileSize: 4 * 1024 * 1024 //4mb
-    },
-    fileFilter: (req, file, callback) => {
-        const formats = [
-            'image/jpeg',
-            'image/jpg',
-            'image/png',
-        ];
-
-        if (formats.includes(file.mimetype)) {
-            callback(null,true)
-        } else {
-            callback (new Error ('format not accepted'))
-        }
-    }
-} as Options;*/
-export const upload = multer({
-    storage: multerS3({
+    }),*/
+    s3: multerS3({
         s3: s3,
         bucket: String(process.env.BUCKET_NAME),
-        metadata: function (req, file, cb) {
-            cb(null, { fieldName: file.fieldname });
-        },
-        key: (req, file, cb) => {
-            randomBytes(16, (error, hash) => {
-                if (error) {
-                    cb(error, file.filename)
+        key: (req, file, callback) => {
+            randomBytes(16, (error, hash) =>{
+                if(error) {
+                    callback(error, file.filename)
                 }
                 const filename = `${hash.toString('hex')}.png`
-                cb(null, filename)
+                callback(null, filename)
             })
         }
     }),
     limits:{
-        fileSize: 4 * 1024 * 1024 //4mb
+        fileSize: 2 * 1024 * 1024 //2mb
     },
     fileFilter: (req, file, callback) => {
         const formats = [
@@ -71,11 +45,13 @@ export const upload = multer({
             'image/jpg',
             'image/png',
         ];
-
+    
         if (formats.includes(file.mimetype)) {
             callback(null,true)
         } else {
             callback (new Error ('format not accepted'))
         }
     }
-})
+   
+} as Options
+

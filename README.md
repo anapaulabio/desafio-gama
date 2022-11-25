@@ -1,8 +1,10 @@
 <div align="center">
 
-![Alt text](/img/cacaVet.png)
+![Alt text](/img/Group%20127.png)
+![](/img/cacaVet.png)
+
 </div>
-<br>
+
 
 ## 💻 Sobre o projeto
 Em um contexto pós-pandemia surgem novas formas de trabalho e comunicação, muitos setores da sociedade integram-se nas tecnologias e as fazem grandes aliadas no mundo corporativo. Empresas apostaram no home office e muitas delas continuam nesse sistema, mesmo com o fim do isolamento social obrigatório.  Em decorrência disso, houve um aumento da sensação de solidão e pessoas se afugentaram dessa situação, adotando animais.
@@ -10,27 +12,18 @@ Em um contexto pós-pandemia surgem novas formas de trabalho e comunicação, mu
 Com essa demanda de novos *“pais e mães de pet”*, a busca por cuidados dos animais intensifica-se e o mercado busca outras maneiras de inovação. Como designers de experiência, nossa missão é captar os problemas que afligem as pessoas e transformá-los em solução. 
 
 Para atender essa nova demanda, construímos uma aplicação para facilitar a comunicação entre os tutores na busca por pessoas veterinárias. **O “CaçaVet”** é uma vitrine para vets e uma facilidade e segurança para tutores.
-<br><br>
  
- ![Alt text](/img/como.png)
- 
-<br><br>
+<br>
 
 ## 📁 Funcionalidades da API
 
  - Cadastro de Veterinários que dispôem todas suas informações para agendamento de consultas;
 
- - Login de usuário com verificação de e-mail e senha;
-
  - Edição de dados realizado após a autenticação do veterinário;
-
- - Exclusão de dados após a autenticaçãoa de usuário;
 
  - Filtragem de veterinários por localização a partir do CEP;
 
  - Filtragem de Veterinários que aceitem teleconsulta;
-
- - Upload de imagem para inserir no perfil do veterinário;
 
 <br>
 
@@ -38,7 +31,7 @@ Para atender essa nova demanda, construímos uma aplicação para facilitar a co
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/). 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
-<br><br>
+<br>
 
 ## 🎲 Rodando o Back End (servidor)
 
@@ -57,7 +50,7 @@ DB_HOST="local irá rodar o servidor"
 DB_PORT="porta utilizada pelo mysql"
 DB_USER="nome de usuario no mysql"
 DB_PASS="senha de usuario no mysql"
-DB_NAME="Nome do banco de dados: caca_vet"
+DB_NAME="Nome do banco de dados: parrot"
 SECRET_KEY="criar senha interna para jsonwebtoken"
 
 # Gere o build:
@@ -76,21 +69,18 @@ $ npx sequelize-cli db:seed:all
 $ npm run debug
 
 ```
-<br>
 
- ## 📁 Documentação da API CAÇA-VET
- <br>
+ ## 📁 Documentação da API PARROT 
 
 ```bash
-# Clone este repositório:
-$ git clone https://github.com/anapaulabio/caca-vet-documentation
+# Acesse a pasta da documentação no terminal/cmd
+$ cd docs
 
 # Acesse o index.html com o plugin Live Server
 ```
 
 <br><br>
 
-![Alt text](/img/doc.png)
 
 <br><br>
 

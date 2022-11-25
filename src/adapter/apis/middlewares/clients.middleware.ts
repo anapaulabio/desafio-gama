@@ -2,6 +2,7 @@ import express from "express";
 
 import { validate, Joi } from 'express-validation';
 
+
 import readUsecase from "../../../domain/usecases/users/read.usecase";
 import constantsConfig from "../../../infrastructure/config/constants.config";
 import logger from '../../../infrastructure/logs/winston.logs';
