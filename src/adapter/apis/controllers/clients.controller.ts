@@ -8,7 +8,6 @@ import updateUsecase from "../../../domain/usecases/users/update.usecase";
 import listUsecase from "../../../domain/usecases/users/list.usecase";
 import readUsecase from "../../../domain/usecases/users/read.usecase";
 import groupByCodeUsecase from "../../../domain/usecases/users/groupByCode.usecase";
-import { upload } from "../../../infrastructure/config/multer.config";
 
 
 class ClientsController {
@@ -69,8 +68,7 @@ class ClientsController {
 
     async createImage( req: express.Request, res: express.Response){
         try {
-            
-          res.status(201).send({avatar: req.file?.destination})
+          res.status(201).send({avatar: "upload realizado com sucesso!"})
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
