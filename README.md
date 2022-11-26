@@ -79,16 +79,11 @@ $ npm run debug
 <br>
 
  ## 📁 Documentação da API CAÇA-VET
- <br>
+ 
 
-```bash
-# Clone este repositório:
-$ git clone https://github.com/anapaulabio/caca-vet-documentation
+### Acesse a documentação através deste link: https://anapaulabio.github.io/documentation-desafio/
 
-# Acesse o index.html com o plugin Live Server
-```
-
-<br><br>
+<br>
 
 ![Alt text](/img/doc.png)
 
