@@ -6,6 +6,20 @@ import readUsecase from "../../../domain/usecases/users/read.usecase";
 import constantsConfig from "../../../infrastructure/config/constants.config";
 import logger from '../../../infrastructure/logs/winston.logs';
 
+import { randomBytes } from "crypto";
+import multer from "multer";
+import multerS3 from "multer-s3";
+import { S3Client } from "@aws-sdk/client-s3";
+import uploadConfig from "../../../infrastructure/config/upload.config";
+
+const s3 = new S3Client({ 
+    region: uploadConfig.region, 
+    credentials: { 
+        accessKeyId: uploadConfig.accessKeyId, 
+        secretAccessKey: uploadConfig.secretAccessKey
+    } 
+});
+
 class ClientsMiddleware {
     validateRegister = validate({
         body: Joi.object({
@@ -45,6 +59,40 @@ class ClientsMiddleware {
         }
     }
 
+    upload = multer({
+        storage: multerS3({
+            s3: s3,
+            bucket: String(process.env.BUCKET_NAME),
+            metadata: function (req, file, cb) {
+                cb(null, { fieldName: file.fieldname });
+            },
+            key: (req, file, cb) => {
+                randomBytes(16, (error, hash) => {
+                    if (error) {
+                        cb(error, file.filename)
+                    }
+                    const filename = `${hash.toString('hex')}.png`
+                    cb(null, filename)
+                })
+            }
+        }),
+        limits:{
+            fileSize: 4 * 1024 * 1024 //4mb
+        },
+        fileFilter: (req, file, callback) => {
+            const formats = [
+                'image/jpeg',
+                'image/jpg',
+                'image/png',
+            ];
+    
+            if (formats.includes(file.mimetype)) {
+                callback(null,true)
+            } else {
+                callback (new Error ('format not accepted'))
+            }
+        }
+    })
 
 }
 
