@@ -68,7 +68,7 @@ class ClientsController {
 
     async createImage( req: express.Request, res: express.Response){
         try {
-          res.status(201).send({avatar: "upload realizado com sucesso!"})
+            res.status(201).send({avatar: (req.file! as any).key })
         } catch (error) {
             return res.status(500).send(getErrorMessage(error))
         }
