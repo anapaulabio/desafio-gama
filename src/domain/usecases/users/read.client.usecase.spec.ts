@@ -3,19 +3,32 @@ import CreateClientUseCase from './create.usecase'
 import {ClientsEntity} from '../../entities/users/client.entity'
 
 test("Teste unitário ReadClientUsecase", async() => {
+
     const client: ClientsEntity = {
-        "userId": 1900,
-        "name": "Antônio José Silva",
+        "name": "Antônio Joseeé Silva",
         "code": "35530-000",
-        "email": "jose_antonio@outlook.com",
+        "email": `jose_antaasonio${Math.random()}@outlook.com`,
         "password": "123456789",
         "phoneNumber": "74992856030"
     };
-    await CreateClientUseCase.execute(client);
-    const res = await ReadClientUseCase.execute({ userId: 1900 });
-    expect(res?.userId).toBe(client.userId);
-    expect(res?.name).toBe(client.name);
-    expect(res?.code).toBe(client.code);
-    expect(res?.email).toBe(client.email);
-    expect(res?.phoneNumber).toBe(client.phoneNumber);
+
+
+    // var clientEntity = await CreateClientUseCase.execute(client);
+    // var clientRead =  await ReadClientUseCase.execute({ userId: clientEntity?.userId!});
+    // expect(client.name).toBe(clientRead?.name);
+    // expect(client.code).toBe(clientRead?.code);
+    // expect(client.email).toBe(clientRead?.email);
+    // expect(client.phoneNumber).toBe(clientRead?.phoneNumber);
+
+
+
+    await CreateClientUseCase.execute(client).then( async (res) => {
+        await ReadClientUseCase.execute({ userId: res?.userId!});
+        expect(client?.name).toBe(res?.name);
+        expect(client?.code).toBe(res?.code);
+        expect(client?.email).toBe(res?.email);
+        expect(client?.phoneNumber).toBe(res?.phoneNumber);
+   
+    });;
+
 });
