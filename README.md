@@ -37,53 +37,76 @@ Para atender essa nova demanda, construímos uma aplicação para facilitar a co
 ## Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com/), [Node.js](https://nodejs.org/en/). 
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).
+Além disso, será necessário ter uma conta na [AMAZON](https://aws.amazon.com/), criar um novo user IAM e um buket S3.
 <br><br>
 
 ## 🎲 Rodando o Back End (servidor)
 
+
+Clone este repositório:
 ```bash
-# Clone este repositório:
 $ git clone https://github.com/anapaulabio/desafio-gama
+```
 
-# Acesse a pasta do projeto no terminal/cmd:
+Acesse a pasta do projeto no terminal/cmd:
+```bash
 $ cd desafio-gama
+```
 
-# Instale as dependências:
+Instale as dependências:
+```bash
 $ npm install
+```
 
-# Crie e ajuste o arquivo .env a partir do .env.example: 
+Crie e ajuste o arquivo .env a partir do .env.example: 
+```bash
 DB_HOST="local irá rodar o servidor"
 DB_PORT="porta utilizada pelo mysql"
 DB_USER="nome de usuario no mysql"
 DB_PASS="senha de usuario no mysql"
 DB_NAME="Nome do banco de dados: caca_vet"
 SECRET_KEY="criar senha interna para jsonwebtoken"
+BUCKET_NAME="nome do seu buket S3"
+AWS_ACCESS_KEY_ID="ID do seu user IAM da AWS"
+AWS_SECRET_ACCESS_KEY="key do seu user IAM da AWS"
+AWS_DEFAULT_REGION="código da região em que seu buket foi criado"
+```
 
-# Gere o build:
+Gere o build:
+```bash
 $ npx tsc
+```
 
-# Crie banco de dados automaticamente:
+Crie banco de dados automaticamente:
+```bash
 $ npx sequelize db:create
+```
 
-# Crie o migration:
+Crie o migration:
+```bash
 $ npx sequelize-cli db:migrate
+```
 
-# Crie seeds para seu banco de dados:
+Crie seeds para seu banco de dados:
+```bash
 $ npx sequelize-cli db:seed:all
+```
 
-# Inicie a aplicação:
+Inicie a aplicação:
+```bash
 $ npm run debug
-
 ```
 <br>
 
  ## 📁 Documentação da API CAÇA-VET
  
 
+
+
 ### Acesse a documentação através deste link: https://anapaulabio.github.io/documentation-desafio/
 
-<br>
+
 
 ![Alt text](/img/doc.png)
 

@@ -62,7 +62,7 @@ class ClientsMiddleware {
     upload = multer({
         storage: multerS3({
             s3: s3,
-            bucket: String(process.env.BUCKET_NAME),
+            bucket: uploadConfig.bucketName,
             metadata: function (req, file, cb) {
                 cb(null, { fieldName: file.fieldname });
             },
