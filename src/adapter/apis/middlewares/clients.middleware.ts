@@ -28,15 +28,15 @@ class ClientsMiddleware {
             email: Joi.string().email().required(),
             password: Joi.string().min(8).required(),
             phoneNumber: Joi.string().required(),
-            avatar: Joi.string(),
-            specialty: Joi.string(),
+            avatar: Joi.string().required(),
+            specialty: Joi.string().required(),
             crmv: Joi.string().required(),
-            aboutMe: Joi.string(),
-            queryValue: Joi.number(),
-            queryDutyValue: Joi.number(),
-	        formation: Joi.string(),
-	        experience: Joi.string(),
-	        teleconsultation: Joi.boolean()
+            aboutMe: Joi.string().required(),
+            queryValue: Joi.number().required(),
+            queryDutyValue: Joi.number().required(),
+	        formation: Joi.string().required(),
+	        experience: Joi.string().required(),
+	        teleconsultation: Joi.boolean().required()
         })
     })
 
