@@ -6,7 +6,7 @@ import { IUseCase } from "../usecase.interface";
 export class ListClientUseCase implements IUseCase {
     constructor(private _repository: IClientsRepository) {}
 
-    async execute(filters: object): Promise<ClientsEntity[] | undefined> {
+    async execute(filters?: object): Promise<ClientsEntity[] | undefined> {
         console.log("filters-usecase", filters);
         return await this._repository.list(filters);
 
