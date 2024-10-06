@@ -1,12 +1,10 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import { IUseCase } from "../usecase.interface";
 import { IClientsRepository } from "../../repositories/clients.repository.interface";
 import ClientsRepository from "../../../adapter/repositories/clients.repository";
 import secret from "../../../infrastructure/config/secret.config";
 import constantsConfig from "../../../infrastructure/config/constants.config";
 import logger from "../../../infrastructure/logs/winston.logs";
-
 
 export class LoginAuthUseCase implements IUseCase {
     constructor(private _repository: IClientsRepository) { }
@@ -19,9 +17,7 @@ export class LoginAuthUseCase implements IUseCase {
             throw new Error(constantsConfig.AUTH.MESSAGES.ERROR.INVALID_EMAIL)
         }
 
-        const isMatch = bcrypt.compareSync(data.password, user!.password!)
-
-        if (isMatch) {
+        if (user.password === data.password) {
             const token = jwt.sign(user, secret, {
                 expiresIn: '2 days'
             })
@@ -34,7 +30,6 @@ export class LoginAuthUseCase implements IUseCase {
             logger.error("Senha inválida")
             throw new Error(constantsConfig.AUTH.MESSAGES.ERROR.INVALID_PASS)
         }
-        
     }
 }
 
